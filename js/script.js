@@ -3,8 +3,10 @@ let bg = document.querySelector('.home')
 const panels = document.querySelectorAll('.panel')
 const inputBox = document.querySelector("#input-box");
 const list = document.querySelector(".list");
+var topBtn = document.getElementById("top");
 let load = 0;
 
+// For Loading Home
 let int = setInterval(blurring, 30)
 function blurring() {
   load++;
@@ -20,8 +22,10 @@ function blurring() {
 const scale = (num, in_min, in_max, out_min, out_max) => {
   return ((num - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;
 }
+//End Loading Home
 
 
+// For Slider in About Section
 panels.forEach(panel => {
     panel.addEventListener('click', () => {
         removeActiveClasses()
@@ -34,8 +38,10 @@ function removeActiveClasses() {
         panel.classList.remove('active')
     })
 }
+// End Slider in About Section
 
 
+// For Add-Todo Section
 function addTask() {
   if(inputBox.value === ""){
     alert("يجب ان تدخل اقتراحك لحل مشكلة القضية الفلسطينية !");
@@ -70,3 +76,17 @@ function showData(){
   list.innerHTML = localStorage.getItem("data");
 }
 showData();
+// End Add-Todo Section
+
+
+// For Smooth Scrolling to Top
+window.addEventListener("scroll" , () => {
+  window.scrollY >= 100 ? topBtn.classList.add("show") : topBtn.classList.remove("show");
+});
+
+topBtn.addEventListener("click", () => {
+  window.scrollTo({
+      top : 0 ,
+      behavior : "smooth"
+  });
+});
